@@ -1,0 +1,178 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;500;600;700;800&family=Nunito:wght@400;500;600;700;800&display=swap');
+
+:root {
+  --foreground-rgb: 30, 30, 60;
+  --background-start-rgb: 240, 248, 255;
+  --background-end-rgb: 255, 245, 238;
+}
+
+body {
+  color: rgb(var(--foreground-rgb));
+  background: linear-gradient(135deg, rgb(var(--background-start-rgb)), rgb(var(--background-end-rgb)));
+  font-family: 'Nunito', system-ui, sans-serif;
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+@layer base {
+  * {
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Baloo 2', cursive;
+  }
+}
+
+@layer components {
+  .btn-child {
+    @apply px-6 py-4 rounded-2xl font-bold text-lg shadow-lg transition-all duration-200 
+           active:scale-95 hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed
+           focus:outline-none focus:ring-4;
+  }
+
+  .btn-primary {
+    @apply btn-child bg-gradient-to-r from-primary-500 to-primary-600 text-white 
+           hover:from-primary-600 hover:to-primary-700 focus:ring-primary-300;
+  }
+
+  .btn-secondary {
+    @apply btn-child bg-gradient-to-r from-secondary-400 to-secondary-500 text-white 
+           hover:from-secondary-500 hover:to-secondary-600 focus:ring-secondary-300;
+  }
+
+  .btn-accent {
+    @apply btn-child bg-gradient-to-r from-accent-400 to-accent-500 text-white 
+           hover:from-accent-500 hover:to-accent-600 focus:ring-accent-300;
+  }
+
+  .btn-success {
+    @apply btn-child bg-gradient-to-r from-success-400 to-success-500 text-white 
+           hover:from-success-500 hover:to-success-600 focus:ring-success-300;
+  }
+
+  .card-child {
+    @apply bg-white rounded-3xl shadow-xl p-6 border-2 border-transparent 
+           hover:border-primary-200 transition-all duration-200;
+  }
+
+  .comic-panel {
+    @apply bg-white rounded-3xl shadow-xl overflow-hidden border-4 border-gray-100;
+  }
+
+  .world-card {
+    @apply relative overflow-hidden rounded-3xl shadow-xl p-6 text-white cursor-pointer
+           transition-all duration-300 hover:scale-105 hover:shadow-2xl active:scale-95;
+  }
+
+  .choice-button {
+    @apply w-full p-4 rounded-2xl font-semibold text-left transition-all duration-200
+           border-[3px] hover:scale-[1.02] active:scale-[0.98];
+  }
+
+  .choice-correct {
+    @apply choice-button bg-success-50 border-success-300 text-success-800 
+           hover:bg-success-100;
+  }
+
+  .choice-wrong {
+    @apply choice-button bg-red-50 border-red-300 text-red-800 
+           hover:bg-red-100;
+  }
+
+  .choice-neutral {
+    @apply choice-button bg-white border-gray-200 text-gray-800 
+           hover:bg-primary-50 hover:border-primary-300;
+  }
+
+  .badge-item {
+    @apply flex flex-col items-center justify-center p-3 rounded-2xl 
+           transition-all duration-200;
+  }
+
+  .badge-earned {
+    @apply badge-item bg-accent-50 border-2 border-accent-200 shadow-md;
+  }
+
+  .badge-locked {
+    @apply badge-item bg-gray-100 border-2 border-gray-200 opacity-50;
+  }
+
+  .progress-bar {
+    @apply h-4 bg-gray-200 rounded-full overflow-hidden;
+  }
+
+  .progress-fill {
+    @apply h-full bg-gradient-to-r from-primary-400 to-primary-600 rounded-full 
+           transition-all duration-500 ease-out;
+  }
+
+  .input-child {
+    @apply w-full px-4 py-3 rounded-xl border-2 border-gray-200 
+           focus:border-primary-400 focus:ring-4 focus:ring-primary-100 
+           outline-none transition-all duration-200 text-lg;
+  }
+
+  .page-container {
+    @apply max-w-4xl mx-auto px-4 py-6;
+  }
+}
+
+@layer utilities {
+  .text-shadow-sm {
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+  }
+
+  .text-shadow-md {
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  }
+
+  .glass {
+    @apply bg-white/80 backdrop-blur-md;
+  }
+
+  .animate-delay-100 {
+    animation-delay: 100ms;
+  }
+  .animate-delay-200 {
+    animation-delay: 200ms;
+  }
+  .animate-delay-300 {
+    animation-delay: 300ms;
+  }
+  .animate-delay-500 {
+    animation-delay: 500ms;
+  }
+}
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #cbd5e1 transparent;
+}
+
+*::-webkit-scrollbar {
+  width: 6px;
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #cbd5e1;
+  border-radius: 3px;
+}
+
+@keyframes confetti {
+  0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+  100% { transform: translateY(-500px) rotate(720deg); opacity: 0; }
+}
+
+.confetti-piece {
+  animation: confetti 1.5s ease-out forwards;
+}
