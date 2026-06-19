@@ -4,6 +4,7 @@ import { useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { useAuth } from '@/context/AuthContext';
 import { motion } from 'framer-motion';
+import Link from 'next/link';
 
 export default function Home() {
   const { user, loading, isGuest, enterGuestMode } = useAuth();
@@ -137,6 +138,20 @@ export default function Home() {
             {item}
           </motion.span>
         ))}
+      </motion.div>
+
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 1.8 }}
+        className="mt-8"
+      >
+        <Link
+          href="/about"
+          className="text-sm text-gray-400 hover:text-primary-500 transition-colors"
+        >
+          Tentang Kami
+        </Link>
       </motion.div>
     </div>
   );

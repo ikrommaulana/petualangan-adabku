@@ -83,6 +83,9 @@ export default function DashboardPage() {
             <Link href="/parent/reports" className="btn-child bg-white text-gray-700 text-sm px-4 py-2">
               📊 Laporan
             </Link>
+            <Link href="/about" className="btn-child bg-white text-gray-700 text-sm px-4 py-2">
+              ℹ️ About
+            </Link>
             <button onClick={handleLogout} className="btn-child bg-gray-100 text-gray-600 text-sm px-4 py-2">
               🚪 Keluar
             </button>

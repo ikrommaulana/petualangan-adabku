@@ -1,7 +1,11 @@
-const CACHE_NAME = 'adabku-v2';
+const CACHE_NAME = 'adabku-v3';
 const STATIC_ASSETS = [
   '/',
+  '/about',
   '/manifest.json',
+  '/icons/icon-192.svg',
+  '/icons/icon-512.svg',
+  '/icons/favicon.svg',
 ];
 
 self.addEventListener('install', (event) => {
@@ -24,21 +28,38 @@ self.addEventListener('fetch', (event) => {
   if (event.request.method !== 'GET') return;
 
   const url = new URL(event.request.url);
+
   if (url.pathname.startsWith('/_next/') || url.pathname.startsWith('/api/')) {
+    return;
+  }
+
+  if (url.origin !== self.location.origin) {
     return;
   }
 
   event.respondWith(
     caches.match(event.request).then((cached) => {
       const networkFetch = fetch(event.request).then((response) => {
-        if (response && response.status === 200) {
+        if (response && response.status === 200 && response.type === 'basic') {
           const clone = response.clone();
           caches.open(CACHE_NAME).then((cache) => cache.put(event.request, clone));
         }
         return response;
-      }).catch(() => cached);
+      }).catch(() => {
+        if (cached) return cached;
+        if (event.request.mode === 'navigate') {
+          return caches.match('/');
+        }
+        return new Response('Offline', { status: 503 });
+      });
 
       return cached || networkFetch;
     })
   );
+});
+
+self.addEventListener('message', (event) => {
+  if (event.data && event.data.type === 'SKIP_WAITING') {
+    self.skipWaiting();
+  }
 });

@@ -3,6 +3,8 @@ import './globals.css';
 import { AuthProvider } from '@/context/AuthContext';
 import { ChildProvider } from '@/context/ChildContext';
 import PWARegister from '@/components/layout/PWARegister';
+import PWAInstallPrompt from '@/components/layout/PWAInstallPrompt';
+import Footer from '@/components/layout/Footer';
 
 export const metadata: Metadata = {
   title: 'Jejak Kebaikan - Belajar Adab Islam',
@@ -28,9 +30,15 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       </head>
       <body className="antialiased">
         <PWARegister />
+        <PWAInstallPrompt />
         <AuthProvider>
           <ChildProvider>
-            {children}
+            <div className="min-h-screen flex flex-col">
+              <div className="flex-1">
+                {children}
+              </div>
+              <Footer />
+            </div>
           </ChildProvider>
         </AuthProvider>
       </body>
