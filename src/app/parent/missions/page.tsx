@@ -11,7 +11,7 @@ import {
 } from '@/lib/firebase-services';
 import { ChildProfile, MissionProgress } from '@/types';
 import { dailyMissions } from '@/data/missions';
-import { motion } from 'framer-motion';
+import { motion } from 'motion/react';
 import Link from 'next/link';
 
 export default function ParentMissionsPage() {

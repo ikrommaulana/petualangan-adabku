@@ -12,7 +12,7 @@ import {
 } from '@/lib/firebase-services';
 import { ChildProfile, StoryProgress, MissionProgress } from '@/types';
 import { badges } from '@/data/worlds';
-import { motion } from 'framer-motion';
+import { motion } from 'motion/react';
 import Link from 'next/link';
 
 export default function ReportsPage() {

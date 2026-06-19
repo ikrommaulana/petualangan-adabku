@@ -7,7 +7,7 @@ import { getChildProfile } from '@/lib/firebase-services';
 import { getGuestChild, isStoryLockedForGuest } from '@/lib/guest';
 import { ChildProfile } from '@/types';
 import { stories as allStories } from '@/data/stories';
-import { motion } from 'framer-motion';
+import { motion } from 'motion/react';
 import Link from 'next/link';
 
 export default function WorldDetailPage() {

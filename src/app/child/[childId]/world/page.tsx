@@ -7,7 +7,7 @@ import { getChildProfile } from '@/lib/firebase-services';
 import { getGuestChild } from '@/lib/guest';
 import { ChildProfile } from '@/types';
 import { worlds } from '@/data/worlds';
-import { motion } from 'framer-motion';
+import { motion } from 'motion/react';
 import Link from 'next/link';
 
 export default function WorldPage() {

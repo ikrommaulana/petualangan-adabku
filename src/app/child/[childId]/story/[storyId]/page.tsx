@@ -16,7 +16,7 @@ import { getGuestChild, updateGuestChild } from '@/lib/guest';
 import { getStoryById } from '@/data/stories';
 import { ChildProfile, StoryScene, StoryChoice, Story } from '@/types';
 import { speak, stopSpeaking } from '@/lib/tts';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion, AnimatePresence } from 'motion/react';
 
 export default function StoryPage() {
   const params = useParams();

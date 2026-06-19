@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { useAuth } from '@/context/AuthContext';
 import { createChildProfile } from '@/lib/firebase-services';
-import { motion } from 'framer-motion';
+import { motion } from 'motion/react';
 
 export default function CreateChildPage() {
   const { user } = useAuth();
