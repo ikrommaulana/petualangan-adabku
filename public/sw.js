@@ -1,4 +1,4 @@
-const CACHE_NAME = 'adabku-v3';
+const CACHE_NAME = 'adabku-v4';
 const STATIC_ASSETS = [
   '/',
   '/about',
@@ -37,6 +37,19 @@ self.addEventListener('fetch', (event) => {
     return;
   }
 
+  if (event.request.mode === 'navigate') {
+    event.respondWith(
+      fetch(event.request).then((response) => {
+        if (response && response.status === 200) {
+          const clone = response.clone();
+          caches.open(CACHE_NAME).then((cache) => cache.put(event.request, clone));
+        }
+        return response;
+      }).catch(() => caches.match(event.request).then((cached) => cached || caches.match('/')))
+    );
+    return;
+  }
+
   event.respondWith(
     caches.match(event.request).then((cached) => {
       const networkFetch = fetch(event.request).then((response) => {
@@ -47,9 +60,6 @@ self.addEventListener('fetch', (event) => {
         return response;
       }).catch(() => {
         if (cached) return cached;
-        if (event.request.mode === 'navigate') {
-          return caches.match('/');
-        }
         return new Response('Offline', { status: 503 });
       });
 

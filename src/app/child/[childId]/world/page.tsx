@@ -13,7 +13,7 @@ import Link from 'next/link';
 export default function WorldPage() {
   const params = useParams();
   const childId = params.childId as string;
-  const { user, loading: authLoading, isGuest } = useAuth();
+  const { user, loading: authLoading, isGuest, exitGuestMode } = useAuth();
   const router = useRouter();
   const [child, setChild] = useState<ChildProfile | null>(null);
   const [loading, setLoading] = useState(true);
@@ -99,6 +99,12 @@ export default function WorldPage() {
             <p className="text-sm text-primary-700 font-semibold">
               👀 Mode Tamu — <button onClick={() => router.push('/auth/register')} className="underline">Daftar</button> untuk membuka semua cerita dan menyimpan progress!
             </p>
+            <button
+              onClick={() => { exitGuestMode(); router.push('/'); }}
+              className="mt-2 text-xs text-gray-500 hover:text-red-500 underline transition-colors"
+            >
+              Keluar dari Mode Tamu
+            </button>
           </motion.div>
         )}
 

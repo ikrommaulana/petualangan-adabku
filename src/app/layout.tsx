@@ -23,7 +23,7 @@ export const viewport: Viewport = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="id" dir="ltr">
+    <html lang="id" dir="ltr" suppressHydrationWarning>
       <head>
         <link rel="icon" href="/icons/favicon.ico" />
         <link rel="apple-touch-icon" href="/icons/icon-192.png" />
